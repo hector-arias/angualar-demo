@@ -8,7 +8,13 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start:es": "ng serve --configuration=es",
-    "start:fr": "ng serve --configuration=fr"
+    "start:fr": "ng serve --configuration=fr",
+	"postinstall": "ng build --prod",
+	 "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript"
+  },
+   "engines": {
+    "node": "16.15.0",
+    "npm": "8.8.0"
   },
   "private": true,
   "dependencies": {
