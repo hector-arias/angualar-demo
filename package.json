@@ -3,16 +3,16 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng server.js",
+   "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start:es": "ng serve --configuration=es",
     "start:fr": "ng serve --configuration=fr",
-	"postinstall": "ng build --prod",
-	 "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript"
+   "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript",
+    "postinstall": "ng build --prod"
   },
-   "engines": {
+  "engines": {
     "node": "16.15.0",
     "npm": "8.8.0"
   },
@@ -27,6 +27,7 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "express": "^4.18.1",
     "ngx-cookie-service": "^13.2.1",
     "rxjs": "~7.5.0",
     "toastr": "^2.1.4",
