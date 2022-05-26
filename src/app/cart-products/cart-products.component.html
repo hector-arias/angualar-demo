@@ -1,0 +1,22 @@
+<app-home></app-home>
+<br />
+<br />
+<br />
+<br />
+<div class="col-md-3">
+  <div class="form-group">
+    <label i18n for="brand_select">Clients:</label>
+    <select class="form-control" name="" id="brand_select" required ngControl="controlName" ([(ngModel)="selection"  (change)="country1Changed($event)">
+      <option *ngFor="let client of clients" [value]="client.idcliente">{{client.nombre}} {{client.apaterno}}</option>
+    </select>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+    </div>
+    <div class="col-4">
+      <app-cart-calculator [products]="cartProducts"></app-cart-calculator>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark menu" style="z-index: 1000;">
+    <a href="#" class="navbar-brand">TecGurus</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="" class="nav-link" routerLink="home">Home </a>
+      </li>
+      <li class="nav-item" *ngIf="Administrador">
+        <a routerLink="/products" class="nav-link">Productos</a>
+      </li>
+      <li class="nav-item" *ngIf="Administrador">
+        <a routerLink="/inventory" class="nav-link">Inventario</a>
+      </li>
+    </ul>
+
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+
+        <a
+          class="nav-link"
+          href="javascript:;;"
+          [routerLink]="['/cart-items']"
+        >
+          <i class="fa fa-shopping-cart">
+            <span class="mt-2">
+              Items de compra - ({{ shoppingCartService.getLocalCartProducts().length }})
+              </span
+            >
+          </i>
+        </a>
+    </li>
+
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">LogOut</a>
+      </li>
+    </ul>
+  </nav>
+
+
+
+</div>
+
+<div class="container" style="overflow: auto;">
+  <router-outlet></router-outlet>
+</div>

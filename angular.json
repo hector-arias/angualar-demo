@@ -13,8 +13,18 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+
+      "i18n": {
+        "locales": {
+          "fr": "src/locale/messages.fr.xlf",
+          "es": "src/locale/messages.es.xlf"
+        }
+
+      },
+
       "architect": {
         "build": {
+
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/proyecto-final",
@@ -60,6 +70,12 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "fr": {
+              "localize": ["fr"]
+            },
+            "es": {
+              "localize": ["es"]
             }
           },
           "defaultConfiguration": "production"
@@ -72,6 +88,12 @@
             },
             "development": {
               "browserTarget": "Proyecto_Final:build:development"
+            },
+            "es": {
+              "browserTarget": "Proyecto_Final:build:es"
+            },
+            "fr": {
+              "browserTarget": "Proyecto_Final:build:es"
             }
           },
           "defaultConfiguration": "development"

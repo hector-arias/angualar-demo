@@ -1,0 +1,39 @@
+<app-home></app-home>
+
+<div *ngIf="!products">
+  Cargando listado de products...
+</div>
+<div *ngIf="products">
+
+  <div class="row">
+    <div class="col-3" style="margin-bottom: 90px;">
+      <app-product-filter (valueResponse)="recibiRespuesta($event)"></app-product-filter>
+    </div>
+    <div class="col-9">
+      <br>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control " id="exampleCheck1"
+            placeholder="Búsqueda de producto por nombre, descripción o sku" [(ngModel)]="wordFilter">
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" (click)="getProductsFilter()">Buscar</button>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+
+        <ng-container *ngFor="let p of filteredProducts; let i = index">
+          <div class="col">
+            <app-product-card [product]="p"></app-product-card>
+          </div>
+          <div *ngIf="(i + 1)%2 === 0" class="w-100"></div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
