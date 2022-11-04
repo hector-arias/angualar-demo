@@ -29,9 +29,7 @@ jobs:
 
       - name: Run tests & linter
         run: |
-          npm ci
-          npm run test:prod
-          npm run lint
+          npm install
       - name: Coverage badge
         uses: demyanets/angular-coverage-badges-action@v1
         with:
