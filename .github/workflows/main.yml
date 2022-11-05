@@ -1,37 +1,26 @@
 name: Build
 on:
   push:
-  pull_request:
     branches:
-      - master
-
+      - main
 jobs:
-  build:
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
-      - uses: actions/checkout@v1
-
-      - name: Cache node modules
-        uses: actions/cache@v1
+      - uses: actions/checkout@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Run tests & linter
-        run: |
-          npm install
-      - name: Coverage badge
-        uses: demyanets/angular-coverage-badges-action@v1
-        with:
-          coverage-summary-path: coverage/eg-libros-angular/coverage-summary.json
-          github_token: ${{ secrets.GITHUB_TOKEN }}v
+          node-version: 14
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm run test:headless-coverage # package.json->scripts: "test:headless-coverage": "ng test --watch=false --code-coverage --browsers=ChromeHeadless"
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
